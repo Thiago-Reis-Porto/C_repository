@@ -44,7 +44,10 @@ struct node *pop_right(struct list *list);
 struct node *list_remove(struct list *list, unsigned int index);
 
 // Returns element pointer at given index
-void *list_get(struct list *list, unsigned int index);
+void *list_get_elt(struct list *list, unsigned int index);
+
+// Returns node pointer at given index
+struct node *list_get_node(struct list *list, unsigned int index);
 
 // Destroy the list without freeing elements inside nodes
 void destroy_list(struct list **list);
@@ -69,3 +72,5 @@ struct list *slice(struct list *list, unsigned int index_begin, unsigned int ind
 
 // Copy list in given range, with the same pointers to elements
 struct list *copy_p_list(struct list *list);
+
+//---------------------------------------------------------------------------------------------
