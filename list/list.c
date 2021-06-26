@@ -200,7 +200,7 @@ struct node *list_remove(struct list *list, unsigned int index){
 }
 
 // Returns element pointer at given index
-void *list_get(struct list *list, unsigned int index){
+void *list_get_elt(struct list *list, unsigned int index){
     
     if(index > list->lenght-1) {return NULL;}   
     
@@ -235,6 +235,44 @@ void *list_get(struct list *list, unsigned int index){
     }
     
     return node->element;
+}
+
+// Returns node pointer at given index
+struct node *list_get_node(struct list *list, unsigned int index){
+    
+    if(index > list->lenght-1) {return NULL;}   
+    
+    if (is_empty(list)) {return NULL;}
+
+    if(index == 0) {return list->head->element;}
+    
+    if(index == list->lenght-1) {return list->last->element;}
+
+    unsigned int i;
+    struct node *node = list->head;
+    
+    if (index > (list->lenght / 2))
+    {
+        i = list->lenght-1;
+        
+        while (i != index)
+        {
+            node =  node->previous;
+            i--;
+        }
+
+        return node->element;
+    }
+    
+    i=0;
+    
+    while (i != index)
+    {
+        node =  node->next;
+        i++;
+    }
+    
+    return node;
 }
 
 // Destroy the list without freeing elements inside nodes
